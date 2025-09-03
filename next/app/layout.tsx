@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Libertinus_Serif } from "next/font/google";
+import { Jacquarda_Bastarda_9} from "next/font/google";
 import "./globals.css";
 
-const libertinus= Libertinus_Serif({
+const f = Jacquarda_Bastarda_9({
   subsets: ["latin"],
   weight: "400",
 });
@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="text-[18px]">
       <body
-        className={`${libertinus.variable} antialiased`}
+        className={`${f.className} antialiased`}
       >
         {children}
       </body>
