@@ -42,34 +42,40 @@ export default function CharSelector({ onSelect }: { onSelect: (id: string) => v
 
   async function removeMember(c) {
     console.log("removing...", c);
-    const { data, error } = await supabase.from('characters').delete().eq('name', c.name).select().single();
-    console.log("removed", data);
+    const { data, error } = await supabase.from('characters').delete().eq('id', c.id).select().single();
+    if (error) console.error(error)
+    else
+      console.log("removed", data);
   }
 
   async function addMember(name, maxhp) {
-    console.log("adding new Member...", name, maxhp);
-    const { data, error } = await supabase.from('characters').insert({ name: name, hp: maxhp, max: maxhp, party_id: partyID }).select().single();
-    if (error) console.error(error)
-    else {
-      console.log("added!", data);
-      onSelect(data.id);
+    if (name && maxhp) {
+      console.log("adding new Member...", name, maxhp);
+      const { data, error } = await supabase.from('characters').insert({ name: name, hp: maxhp, max: maxhp, party_id: partyID }).select().single();
+      if (error) console.error(error)
+      else {
+        console.log("added!", data);
+        onSelect(data.id);
+      }
     }
   }
 
   return (
     <div>
       <h2 className="mb-[.1em]">Room Number</h2>
-      <input type="number" className="w-full outline px-3 py-1 mb-3" onChange={(e) => { setPartyID(e.target.value) }} />
+      <input type="number" className="w-full border-b focus:bg-stone-700 px-3 py-1 mb-3" onChange={(e) => { setPartyID(e.target.value) }} />
       <ul className="mb-3">
         {characterList.map((c, i) => {
           return (
-            <li key={i} className="flex justify-between">
+            <li key={i} className="flex justify-between hover:bg-stone-700">
               <button className="grow text-left px-3" onClick={() => onSelect(c.id)}>{c.name}</button>
               <button className="px-3" onClick={() => removeMember(c)}> x </button>
             </li>)
         })}
       </ul>
-      <CharacterCreator onSubmit={addMember} />
+      {partyID ?
+        <CharacterCreator onSubmit={addMember} /> : <p>( !!! ) Select a party to join a game.</p>
+      }
     </div>
   );
 }

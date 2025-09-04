@@ -75,9 +75,9 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: String
       <hr className="my-5" />
 
       <Bar charInfo={userChar} />
-      <Keypad onCommit={updateHp} />
+      <Keypad onCommit={updateHp}/>
 
-      <button onClick={onExit}>exit</button>
+      <button onClick={onExit} className="block mx-auto my-4">(exit)</button>
     </div>
   );
 }

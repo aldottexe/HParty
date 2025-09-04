@@ -5,6 +5,15 @@
     --foreground: #d6d3d1;
 }
 
+@layer base {
+  input,
+  textarea,
+  select,
+  button {
+    @apply appearance-none outline-none focus:outline-none focus:ring-0;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
