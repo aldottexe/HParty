@@ -1,4 +1,4 @@
-export function Bar({ charInfo }: { name: String, hp: Number, max: Number }) {
+export function Bar({ charInfo }: { name: string, hp: number, max: number }) {
   return (
     <div className="flex items-center gap-5">
       <p className="w-15 text-right">{charInfo.name}</p>

@@ -6,7 +6,7 @@ import CharacterCreator from "./charCreator";
 
 export default function CharSelector({ onSelect }: { onSelect: (id: string) => void }) {
   const [partyID, setPartyID] = useState<number>();
-  const [characterList, setCharacterList] = useState<any[]>([]);
+  const [characterList, setCharacterList] = useState<unknown[]>([]);
 
   // update displayed list of party members on change
   useEffect(() => {

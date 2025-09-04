@@ -5,9 +5,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Bar } from "@/lib/Bar";
 import { Keypad } from "@/lib/Keypad";
 
-const maxhp = "10";
-
-export default function Tracker({ playerCharID, onExit }: { playerCharID: String, onExit: () => void }) {
+export default function Tracker({ playerCharID, onExit }: { playerCharID: string, onExit: () => void }) {
   useEffect(() => {
     const party_id = fetchPartyFromID(playerCharID);
     fetchCharacters(party_id);
@@ -30,7 +28,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: String
   }, [])
 
   async function fetchPartyFromID(id: string) {
-    let { data, error } = await supabase.from('characters').select('party_id').eq('id', id).single();
+    const { data, error } = await supabase.from('characters').select('party_id').eq('id', id).single();
     if (error) console.error(error)
     else {
       return data?.party_id;
@@ -39,7 +37,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: String
 
   async function fetchCharacters(party_id) {
     const pid = await party_id;
-    let { data, error } = await supabase.from('characters').select('*').eq('party_id', pid);
+    const { data, error } = await supabase.from('characters').select('*').eq('party_id', pid);
     if (error) console.error(error)
     else {
       const otherPlayers = data?.filter(e => {

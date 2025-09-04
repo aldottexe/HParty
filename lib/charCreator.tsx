@@ -10,7 +10,7 @@ export default function CharacterCreator({ onSubmit }: { onSubmit: (name: string
     </div>
   );
 
-  function Field({ name, type, onChange }: { name: String, type: String, onChange: (e: InputEvent) => void }) {
+  function Field({ name, type, onChange }: { name: string, type: string, onChange: (e: InputEvent) => void }) {
     return (
       <>
         <input className="block w-full px-3 py-1 border-b focus:bg-stone-700" id="name" type={type} onChange={onChange} />

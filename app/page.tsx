@@ -19,13 +19,15 @@ export default function Home() {
   }, [])
 
   async function fetchCharacter(id) {
-    let { data, error } = await supabase
+    const { data, error } = await supabase
       .from('characters')
       .select('*')
       .eq('id', id)
       .single();
-
-    if (data) {
+    if (error) {
+      console.error(error)
+    }
+    else if (data) {
       setPlayerCharID(id);
       setCharSelected(true);
     } else {
@@ -42,7 +44,7 @@ export default function Home() {
   function exit() {
     localStorage.removeItem('character_id');
     setCharSelected(false);
-}
+  }
 
   return (
     <div className="mx-auto mt-20 w-[80%]">
@@ -50,7 +52,7 @@ export default function Home() {
       <h1 className="text-3xl mb-5">HParty</h1>
 
       {charSelected ?
-        <Tracker playerCharID={playerCharID} onExit={exit}/> :
+        <Tracker playerCharID={playerCharID} onExit={exit} /> :
         <CharSelector onSelect={storeChar} />}
     </div>
   );
