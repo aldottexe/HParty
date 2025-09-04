@@ -9,16 +9,16 @@ import CharSelector from "@/lib/charSelector";
 export default function Home() {
 
   // if a character is selected, show the main page. if not, show the picker
-  const [charSelected, setCharSelected] = useState(false);
+  const [charSelected, setCharSelected] = useState<boolean>(false);
 
-  const [playerCharID, setPlayerCharID] = useState();
+  const [playerCharID, setPlayerCharID] = useState<string>("");
   useEffect(() => {
     const id = localStorage.getItem('character_id');
     if (id)
       fetchCharacter(id);
   }, [])
 
-  async function fetchCharacter(id) {
+  async function fetchCharacter(id: string) {
     const { data, error } = await supabase
       .from('characters')
       .select('*')
@@ -35,7 +35,7 @@ export default function Home() {
     }
   }
 
-  function storeChar(id) {
+  function storeChar(id: string) {
     setPlayerCharID(id);
     localStorage.setItem('character_id', id);
     setCharSelected(true);

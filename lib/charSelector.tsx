@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import CharacterCreator from "./charCreator";
+import { Tables } from "@/database.types";
 
 export default function CharSelector({ onSelect }: { onSelect: (id: string) => void }) {
   const [partyID, setPartyID] = useState<number>();
-  const [characterList, setCharacterList] = useState<unknown[]>([]);
+  const [characterList, setCharacterList] = useState<Tables<'characters'>[]>([]);
 
   // update displayed list of party members on change
   useEffect(() => {

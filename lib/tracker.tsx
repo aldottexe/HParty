@@ -35,7 +35,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
     }
   }
 
-  async function fetchCharacters(party_id) {
+  async function fetchCharacters(party_id: number) {
     const pid = await party_id;
     const { data, error } = await supabase.from('characters').select('*').eq('party_id', pid);
     if (error) console.error(error)
@@ -52,7 +52,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
 
 
   const [characters, setCharacters] = useState([]);
-  const [userChar, setUserChar] = useState({});
+  const [userChar, setUserChar] = useState([]);
 
   async function updateHp(ammt: number): Promise<void> {
     const newHp = Math.max(0, Math.min(userChar.max, userChar.hp + ammt));
