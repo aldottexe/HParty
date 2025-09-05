@@ -59,6 +59,21 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
     await supabase.from('characters').update({ hp: newHp }).eq('id', playerCharID);
   }
 
+  async function heal(ammt: number): Promise<void> {
+    if (ammt <= 0) return;
+    const newHp = Math.min(userChar.max, userChar.hp + ammt);
+    await supabase.from('characters').update({ hp: newHp }).eq('id', playerCharID);
+  }
+  async function damage(ammt: number): Promise<void> {
+    if (ammt <= 0) return;
+    const newTemp = Math.max(0, userChar.temp - ammt);
+    const newHp = Math.max(0, userChar.hp - Math.max(0, ammt - userChar.temp)));
+    await supabase.from('characters').update({ hp: newHp, temp: newTemp }).eq('id', playerCharID);
+  }
+  async function setTemp(ammt: number): Promise<void> {
+    if (ammt <= userChar.temp) return;
+    await supabase.from('characters').update({ temp: ammt }).eq('id', playerCharID);
+  }
 
   return (
     <div>
@@ -73,7 +88,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
       <p className="overflow-clip mb-3 break-all h-[1em] text-center relative bottom-1">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
       <Bar charInfo={userChar} />
-      <Keypad onCommit={updateHp}/>
+      <Keypad onDamage={damage} onHeal={heal} onTemp={setTemp}/>
 
       <button onClick={onExit} className="block mx-auto my-4">(exit)</button>
     </div>

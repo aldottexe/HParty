@@ -13,7 +13,7 @@ export default function CharacterCreator({ onSubmit }: { onSubmit: (name: string
   function Field({ name, type, onChange }: { name: string, type: string, onChange: (e: InputEvent) => void }) {
     return (
       <>
-        <input className="block w-full px-3 py-1 border-b focus:bg-stone-700" id="name" type={type} onChange={onChange} />
+        <input className="block w-full px-3 py-1 border-b bg-stone-800 focus:bg-stone-700" id="name" type={type} onChange={onChange} />
         <label className="block w-full mb-3" htmlFor={name} >{name}</label>
       </>
     )
