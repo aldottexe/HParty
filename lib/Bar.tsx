@@ -4,9 +4,9 @@ export function Bar({ charInfo }: { name: string, hp: number, max: number, temp:
       <p className=" ml-1">{charInfo.name}</p>
 
       <div className="h-3 w-full absolute top-0 left-0 z-[-2] flex">
-        <div className="h-6 transition-all duration-700 bg-stone-700" style={{ width: `${Math.round((charInfo.hp / (charInfo.max + charInfo.temp)) * 100)}%` }} >
+        <div className="h-6 transition-all duration-700 bg-stone-700" style={{ width: `${Math.round((charInfo.hp / Math.max(charInfo.hp + charInfo.temp, charInfo.max)) * 100)}%` }} >
         </div>
-        <div className="h-6 transition-all duration-700 bg-stone-800" style={{ width: `${Math.round((charInfo.temp / (charInfo.max + charInfo.temp)) * 100)}%` }} >
+        <div className="h-6 transition-all duration-700 bg-stone-800" style={{ width: `${Math.round((charInfo.temp / Math.max(charInfo.hp + charInfo.temp, charInfo.max)) * 100)}%` }} >
         </div>
       </div>
       <p className=" mr-1 sm:mr-3">{charInfo.hp} {charInfo.temp > 0 ? `+ ${charInfo.temp}` : ''} / {charInfo.max} </p>

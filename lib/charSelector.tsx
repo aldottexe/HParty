@@ -65,15 +65,17 @@ export default function CharSelector({ onSelect }: { onSelect: (id: string) => v
     <div>
       <h2 className="mb-[.1em]">Party Number</h2>
       <input type="number" className="w-full border-b bg-stone-800 focus:bg-stone-700 px-3 py-1 mb-3" onChange={(e) => { setPartyID(e.target.value) }} />
-      <ul className="mb-3">
-        {characterList.map((c, i) => {
-          return (
-            <li key={i} className="flex justify-between hover:bg-stone-700">
-              <button className="grow text-left px-3" onClick={() => onSelect(c.id)}>{c.name}</button>
-              <button className="px-3" onClick={() => removeMember(c)}> x </button>
-            </li>)
-        })}
-      </ul>
+      {characterList.length > 0 ?
+        <ul className="mb-3 p-3">
+          {characterList.map((c, i) => {
+            return (
+              <li key={i} className="flex justify-between hover:bg-stone-700">
+                <button className="grow text-left px-3" onClick={() => onSelect(c.id)}>{c.name}</button>
+                <button className="px-3" onClick={() => removeMember(c)}> x </button>
+              </li>)
+          })}
+        </ul>
+        : ""}
       {partyID ?
         <CharacterCreator onSubmit={addMember} /> : <p>( !!! ) Enter a party number to join a game.</p>
       }
