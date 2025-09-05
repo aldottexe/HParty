@@ -63,7 +63,7 @@ export default function CharSelector({ onSelect }: { onSelect: (id: string) => v
 
   return (
     <div>
-      <h2 className="mb-[.1em]">Room Number</h2>
+      <h2 className="mb-[.1em]">Party Number</h2>
       <input type="number" className="w-full border-b bg-stone-800 focus:bg-stone-700 px-3 py-1 mb-3" onChange={(e) => { setPartyID(e.target.value) }} />
       <ul className="mb-3">
         {characterList.map((c, i) => {
@@ -75,7 +75,7 @@ export default function CharSelector({ onSelect }: { onSelect: (id: string) => v
         })}
       </ul>
       {partyID ?
-        <CharacterCreator onSubmit={addMember} /> : <p>( !!! ) Select a party to join a game.</p>
+        <CharacterCreator onSubmit={addMember} /> : <p>( !!! ) Enter a party number to join a game.</p>
       }
     </div>
   );
