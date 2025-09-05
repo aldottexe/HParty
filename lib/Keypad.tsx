@@ -8,7 +8,7 @@ export function Keypad({ onCommit }: { onCommit: (ammt: number) => null }) {
 
   return (
     <div>
-      <p className="text-3xl text-center p-10">{input}</p>
+      <p className="text-4xl text-center mt-7 mb-3">{input}</p>
       <div className="grid grid-cols-6 gap-2 max-w-80 content-center mx-auto">
         {nums.map((c, i) => <Button key={i} onClick={() => { setInput(input * 10 + c) }}>{c}</Button>)}
         <Button onClick={() => { setInput(Math.floor(input / 10)) }}>&lt;</Button>

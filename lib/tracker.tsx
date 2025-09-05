@@ -70,7 +70,7 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
         ))}
       </ul>
 
-      <hr className="my-5" />
+      <p className="overflow-clip mb-3 break-all h-[1em] text-center">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
       <Bar charInfo={userChar} />
       <Keypad onCommit={updateHp}/>
