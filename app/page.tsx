@@ -47,7 +47,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto mt-20 w-[80%]">
+    <div className="mx-auto mt-5 sm:mt-20 w-[80%]">
 
       <h1 className="text-3xl mb-5">HParty</h1>
 

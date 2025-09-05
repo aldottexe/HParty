@@ -23,7 +23,7 @@ export function Keypad({ onCommit }: { onCommit: (ammt: number) => null }) {
 function Button({ children, onClick }: { children: ReactNode, onClick: (e: PointerEvent) => void }) {
   return (
     <button
-      className="p-3 border-1 block col-span-2 active:bg-gray-800 transition-colors duration-100 nth-[12]:col-span-3 nth-[13]:col-span-3"
+      className="p-1 sm:p-2 border-1 block col-span-2 active:bg-gray-800 transition-colors duration-100 nth-[12]:col-span-3 nth-[13]:col-span-3"
       onClick={onClick}>
       {children}
     </button>
