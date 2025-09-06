@@ -8,7 +8,7 @@ const f = Jacquarda_Bastarda_9({
 });
 
 export const metadata: Metadata = {
-  title: "HParty",
+  title: "HParty!",
   description: "health time health time",
 };
 
