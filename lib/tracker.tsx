@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 
 import { Bar } from "@/lib/Bar";
 import { Keypad } from "@/lib/Keypad";
+import TextButton from "./TextButton";
 
 export default function Tracker({ playerCharID, onExit }: { playerCharID: string, onExit: () => void }) {
   useEffect(() => {
@@ -54,11 +55,6 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
   const [characters, setCharacters] = useState([]);
   const [userChar, setUserChar] = useState([]);
 
-  async function updateHp(ammt: number): Promise<void> {
-    const newHp = Math.max(0, Math.min(userChar.max, userChar.hp + ammt));
-    await supabase.from('characters').update({ hp: newHp }).eq('id', playerCharID);
-  }
-
   async function heal(ammt: number): Promise<void> {
     if (ammt <= 0) return;
     const newHp = Math.min(userChar.max, userChar.hp + ammt);
@@ -88,9 +84,11 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
       <p className="overflow-clip mb-3 break-all h-[1em] text-center relative bottom-1">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
       <Bar charInfo={userChar} />
-      <Keypad onDamage={damage} onHeal={heal} onTemp={setTemp}/>
+      <Keypad onDamage={damage} onHeal={heal} onTemp={setTemp} />
 
-      <button onClick={onExit} className="block mx-auto my-4">(exit)</button>
+      <div className="max-w-80 my-4 w-full mx-auto">
+        <TextButton onClick={onExit}> exit</TextButton>
+      </div>
     </div>
   );
 }

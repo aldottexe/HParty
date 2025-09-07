@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jacquarda_Bastarda_9} from "next/font/google";
+import { Jacquarda_Bastarda_9 } from "next/font/google";
 import "./globals.css";
 
 const f = Jacquarda_Bastarda_9({
@@ -22,7 +22,13 @@ export default function RootLayout({
       <body
         className={`${f.className} antialiased`}
       >
-        {children}
+        <div className="mx-auto mt-5 sm:mt-20 w-[80%]">
+          <div className="flex justify-between">
+            <h1 className="text-3xl mb-5 hidden sm:block">HParty</h1>
+            <img src="/hparty.png" className="block w-20 mx-auto sm:mx-0 mb-5" style={{ imageRendering: "pixelated" }} alt="welcome!" />
+          </div>
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import CharacterCreator from "./charCreator";
 import { Tables } from "@/database.types";
+import Link from "next/link";
+import TextLink from "./TextLink";
 
 export default function CharSelector({ onSelect }: { onSelect: (id: string) => void }) {
   const [partyID, setPartyID] = useState<number>();
@@ -77,7 +79,10 @@ export default function CharSelector({ onSelect }: { onSelect: (id: string) => v
         </ul>
         : ""}
       {partyID ?
-        <CharacterCreator onSubmit={addMember} /> : <p>( !!! ) Enter a party number to join a game.</p>
+        <>
+          <CharacterCreator onSubmit={addMember} />
+          <TextLink href={`/dm/${partyID}`}>Dm Tools</TextLink>
+        </> : <p>( !!! ) Enter a party number to join a game.</p>
       }
     </div>
   );

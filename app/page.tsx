@@ -47,16 +47,11 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto mt-5 sm:mt-20 w-[80%]">
-
-<div className="flex justify-between">
-
-<h1 className="text-3xl mb-5 hidden sm:block">HParty</h1>
-      <img src="/hparty.png" className="block w-20 mx-auto sm:mx-0 mb-5" style={{imageRendering: "pixelated"}} alt="welcome!" />
-</div>
-      {charSelected ?
-        <Tracker playerCharID={playerCharID} onExit={exit} /> :
-        <CharSelector onSelect={storeChar} />}
-    </div>
+    <>
+      {
+        charSelected ?
+          <Tracker playerCharID={playerCharID} onExit={exit} /> : <CharSelector onSelect={storeChar} />
+      }
+    </>
   );
 }
