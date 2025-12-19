@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Bar } from "@/lib/Bar";
 import { Keypad } from "@/lib/Keypad";
 import TextButton from "./TextButton";
+import SetMaxHP from "./setMaxHP";
 
 export default function Tracker({ playerCharID, onExit }: { playerCharID: string, onExit: () => void }) {
 
@@ -123,6 +124,12 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
       await supabase.from('characters').update({ temp: ammt }).eq('id', playerCharID);
    }
 
+   async function setMax(ammt: number): Promise<void> {
+      if (!ammt || ammt <= 0) return;
+      let data = ammt < userChar.hp ? { max: ammt, hp: ammt } : { max: ammt }
+      await supabase.from('characters').update(data).eq('id', playerCharID);
+   }
+
    return (
       <div>
          {connectionStatus !== "SUBSCRIBED" ? <img src="/disconnect.svg" className="h-5 w-5 fixed top-4 left-4 animate-pulse" /> : <></>}
@@ -140,6 +147,9 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
                <p className="overflow-clip mb-3 break-all h-[1em] text-center relative bottom-1">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 
                <Bar charInfo={userChar} />
+               <div className="flex justify-end">
+                  <SetMaxHP onSubmit={setMax} />
+               </div>
                <Keypad onDamage={damage} onHeal={heal} onTemp={setTemp} />
 
                <div className="max-w-80 my-4 w-full mx-auto">
