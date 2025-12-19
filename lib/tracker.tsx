@@ -125,6 +125,8 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
 
    return (
       <div>
+         {connectionStatus !== "SUBSCRIBED" ? <img src="/disconnect.svg" className="h-5 w-5 fixed top-4 left-4 animate-pulse" /> : <></>}
+
          {characters && userChar ? (
             <>
                <ul>
@@ -145,7 +147,6 @@ export default function Tracker({ playerCharID, onExit }: { playerCharID: string
                </div>
             </>
          ) : <></>}
-         <p>{connectionStatus?.toLowerCase()}</p>
       </div>
    );
 }
