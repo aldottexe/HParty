@@ -1,28 +1,33 @@
 @import "tailwindcss";
 
 :root {
-    --background: #1c1917;
-    --foreground: #d6d3d1;
+   --background: #1c1917;
+   --foreground: #d6d3d1;
+   --myGreen: #5ad89bff;
+   --myRed: #d85a6bff;
 }
 
 @layer base {
-  input,
-  textarea,
-  select,
-  button {
-    @apply appearance-none outline-none focus:outline-none focus:ring-0;
-  }
+
+   input,
+   textarea,
+   select,
+   button {
+      @apply appearance-none outline-none focus:outline-none focus:ring-0;
+   }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+   --color-myGreen: var(--myGreen);
+   --color-myRed: var(--myRed);
+   --font-sans: var(--font-geist-sans);
+   --font-mono: var(--font-geist-mono);
 }
 
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+   background: var(--background);
+   color: var(--foreground);
 }
